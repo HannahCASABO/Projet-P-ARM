@@ -1558,15 +1558,15 @@
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(210,1530)" name="Tunnel">
-      <a name="label" val="R2"/>
+      <a name="label" val="R5"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(210,1700)" name="Tunnel">
-      <a name="label" val="R3"/>
+      <a name="label" val="R6"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(210,1870)" name="Tunnel">
-      <a name="label" val="R4"/>
+      <a name="label" val="R7"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(210,250)" name="Tunnel">

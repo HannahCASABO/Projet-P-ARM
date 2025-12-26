@@ -400,60 +400,60 @@ end TCL_Generic;
       <a name="label" val="Rdn"/>
       <a name="width" val="3"/>
     </comp>
+    <comp lib="0" loc="(200,910)" name="Constant">
+      <a name="value" val="0x4"/>
+      <a name="width" val="4"/>
+    </comp>
     <comp lib="0" loc="(210,70)" name="Tunnel">
       <a name="label" val="instru"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(380,1350)" name="Constant">
-      <a name="value" val="0x4"/>
+    <comp lib="0" loc="(220,1050)" name="Constant">
+      <a name="value" val="0x5"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(220,1070)" name="Constant">
+      <a name="value" val="0x6"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(220,1100)" name="Constant">
+      <a name="value" val="0x9"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(220,900)" name="Constant">
+      <a name="value" val="0x3"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(240,1140)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="instru"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(240,890)" name="Constant">
+      <a name="value" val="0x2"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(280,1060)" name="Tunnel">
+      <a name="label" val="OpCodeAddSub"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(280,960)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="SousCasShift"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(320,910)" name="Tunnel">
+      <a name="label" val="OpCodeShift"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(380,150)" name="Tunnel">
       <a name="label" val="MIX"/>
       <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(400,1340)" name="Constant">
-      <a name="value" val="0x3"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(400,1490)" name="Constant">
-      <a name="value" val="0x5"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(400,1510)" name="Constant">
-      <a name="value" val="0x6"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(400,1540)" name="Constant">
-      <a name="value" val="0x9"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(420,1330)" name="Constant">
-      <a name="value" val="0x2"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(420,1580)" name="Tunnel">
-      <a name="facing" val="north"/>
-      <a name="label" val="instru"/>
-      <a name="width" val="16"/>
-    </comp>
-    <comp lib="0" loc="(460,1400)" name="Tunnel">
-      <a name="facing" val="north"/>
-      <a name="label" val="SousCasShift"/>
-      <a name="width" val="2"/>
-    </comp>
-    <comp lib="0" loc="(460,1500)" name="Tunnel">
-      <a name="label" val="OpCodeAddSub"/>
-      <a name="width" val="4"/>
-    </comp>
     <comp lib="0" loc="(490,980)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="Imm8"/>
       <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(500,1350)" name="Tunnel">
-      <a name="label" val="OpCodeShift"/>
-      <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(540,980)" name="Bit Extender">
       <a name="out_width" val="32"/>
@@ -770,14 +770,14 @@ end TCL_Generic;
       <a name="group" val="3"/>
       <a name="width" val="14"/>
     </comp>
-    <comp lib="2" loc="(420,1530)" name="BitSelector">
+    <comp lib="2" loc="(240,1090)" name="BitSelector">
       <a name="facing" val="north"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="2" loc="(440,1500)" name="Multiplexer">
+    <comp lib="2" loc="(260,1060)" name="Multiplexer">
       <a name="width" val="4"/>
     </comp>
-    <comp lib="2" loc="(480,1350)" name="Multiplexer">
+    <comp lib="2" loc="(300,910)" name="Multiplexer">
       <a name="select" val="2"/>
       <a name="width" val="4"/>
     </comp>
@@ -877,17 +877,17 @@ end TCL_Generic;
     <wire from="(160,310)" to="(160,320)"/>
     <wire from="(170,300)" to="(190,300)"/>
     <wire from="(180,70)" to="(210,70)"/>
-    <wire from="(380,1350)" to="(440,1350)"/>
-    <wire from="(400,1340)" to="(440,1340)"/>
-    <wire from="(400,1490)" to="(410,1490)"/>
-    <wire from="(400,1510)" to="(410,1510)"/>
-    <wire from="(400,1540)" to="(410,1540)"/>
-    <wire from="(420,1330)" to="(440,1330)"/>
-    <wire from="(420,1520)" to="(420,1530)"/>
-    <wire from="(420,1560)" to="(420,1580)"/>
-    <wire from="(440,1500)" to="(460,1500)"/>
-    <wire from="(460,1370)" to="(460,1400)"/>
-    <wire from="(480,1350)" to="(500,1350)"/>
+    <wire from="(200,910)" to="(260,910)"/>
+    <wire from="(220,1050)" to="(230,1050)"/>
+    <wire from="(220,1070)" to="(230,1070)"/>
+    <wire from="(220,1100)" to="(230,1100)"/>
+    <wire from="(220,900)" to="(260,900)"/>
+    <wire from="(240,1080)" to="(240,1090)"/>
+    <wire from="(240,1120)" to="(240,1140)"/>
+    <wire from="(240,890)" to="(260,890)"/>
+    <wire from="(260,1060)" to="(280,1060)"/>
+    <wire from="(280,930)" to="(280,960)"/>
+    <wire from="(300,910)" to="(320,910)"/>
     <wire from="(490,980)" to="(500,980)"/>
     <wire from="(540,980)" to="(550,980)"/>
     <wire from="(620,1070)" to="(640,1070)"/>

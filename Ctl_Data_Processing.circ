@@ -175,11 +175,11 @@ end TCL_Generic;
       <circ-anchor facing="east" x="270" y="60"/>
       <circ-port dir="in" pin="170,50" x="50" y="80"/>
       <circ-port dir="in" pin="210,130" x="50" y="60"/>
-      <circ-port dir="out" pin="300,220" x="270" y="150"/>
-      <circ-port dir="out" pin="310,270" x="270" y="160"/>
+      <circ-port dir="out" pin="300,220" x="270" y="80"/>
+      <circ-port dir="out" pin="310,270" x="270" y="60"/>
       <circ-port dir="out" pin="450,340" x="270" y="140"/>
       <circ-port dir="out" pin="580,100" x="270" y="120"/>
-      <circ-port dir="out" pin="580,130" x="270" y="130"/>
+      <circ-port dir="out" pin="580,130" x="270" y="100"/>
     </appear>
     <comp lib="0" loc="(170,50)" name="Pin">
       <a name="appearance" val="classic"/>

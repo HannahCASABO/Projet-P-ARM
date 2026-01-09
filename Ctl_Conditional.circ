@@ -10,7 +10,6 @@
     </tool>
     <tool name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="facing" val="north"/>
     </tool>
     <tool name="Probe">
       <a name="appearance" val="classic"/>
@@ -108,22 +107,25 @@
       <a name="label" val="Verified"/>
       <a name="type" val="output"/>
     </comp>
-    <comp lib="0" loc="(150,450)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="Flag"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(170,450)" name="Splitter">
-      <a name="bit0" val="3"/>
-      <a name="bit1" val="2"/>
-      <a name="bit2" val="1"/>
-      <a name="bit3" val="0"/>
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="4"/>
-    </comp>
     <comp lib="0" loc="(180,370)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="Enable"/>
+    </comp>
+    <comp lib="0" loc="(180,410)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="N"/>
+    </comp>
+    <comp lib="0" loc="(180,440)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Z"/>
+    </comp>
+    <comp lib="0" loc="(180,470)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="C"/>
+    </comp>
+    <comp lib="0" loc="(180,500)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="V"/>
     </comp>
     <comp lib="0" loc="(200,370)" name="Tunnel">
       <a name="label" val="E"/>
@@ -514,16 +516,11 @@
     <wire from="(1010,760)" to="(1040,760)"/>
     <wire from="(1020,270)" to="(1030,270)"/>
     <wire from="(1030,350)" to="(1050,350)"/>
-    <wire from="(150,450)" to="(170,450)"/>
     <wire from="(180,370)" to="(200,370)"/>
-    <wire from="(190,410)" to="(210,410)"/>
-    <wire from="(190,420)" to="(210,420)"/>
-    <wire from="(190,430)" to="(200,430)"/>
-    <wire from="(190,440)" to="(190,500)"/>
-    <wire from="(190,500)" to="(210,500)"/>
-    <wire from="(200,430)" to="(200,470)"/>
-    <wire from="(200,470)" to="(210,470)"/>
-    <wire from="(210,420)" to="(210,440)"/>
+    <wire from="(180,410)" to="(210,410)"/>
+    <wire from="(180,440)" to="(210,440)"/>
+    <wire from="(180,470)" to="(210,470)"/>
+    <wire from="(180,500)" to="(210,500)"/>
     <wire from="(230,200)" to="(270,200)"/>
     <wire from="(280,40)" to="(310,40)"/>
     <wire from="(290,150)" to="(330,150)"/>

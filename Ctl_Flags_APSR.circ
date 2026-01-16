@@ -202,25 +202,25 @@ end TCL_Generic;
       <a name="appearance" val="classic"/>
       <a name="label" val="Rst"/>
     </comp>
-    <comp lib="0" loc="(150,300)" name="Tunnel">
-      <a name="label" val="Rst"/>
-    </comp>
-    <comp lib="0" loc="(200,130)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="Update_Mask"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(200,60)" name="Pin">
+    <comp lib="0" loc="(150,120)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="Flags_In"/>
       <a name="width" val="4"/>
     </comp>
-    <comp lib="0" loc="(210,130)" name="Splitter">
+    <comp lib="0" loc="(150,300)" name="Tunnel">
+      <a name="label" val="Rst"/>
+    </comp>
+    <comp lib="0" loc="(190,20)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Update_Mask"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(200,20)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
     </comp>
-    <comp lib="0" loc="(250,60)" name="Splitter">
+    <comp lib="0" loc="(270,60)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
@@ -287,19 +287,30 @@ end TCL_Generic;
     </comp>
     <wire from="(100,220)" to="(110,220)"/>
     <wire from="(130,300)" to="(150,300)"/>
-    <wire from="(200,130)" to="(210,130)"/>
-    <wire from="(200,60)" to="(250,60)"/>
-    <wire from="(220,150)" to="(220,520)"/>
+    <wire from="(150,120)" to="(160,120)"/>
+    <wire from="(160,60)" to="(160,120)"/>
+    <wire from="(160,60)" to="(270,60)"/>
+    <wire from="(190,20)" to="(200,20)"/>
+    <wire from="(210,100)" to="(220,100)"/>
+    <wire from="(210,40)" to="(210,100)"/>
+    <wire from="(220,100)" to="(220,520)"/>
+    <wire from="(220,40)" to="(220,90)"/>
     <wire from="(220,520)" to="(400,520)"/>
-    <wire from="(230,150)" to="(230,400)"/>
+    <wire from="(220,90)" to="(230,90)"/>
+    <wire from="(230,40)" to="(230,80)"/>
     <wire from="(230,400)" to="(400,400)"/>
-    <wire from="(240,150)" to="(240,280)"/>
+    <wire from="(230,80)" to="(240,80)"/>
+    <wire from="(230,90)" to="(230,400)"/>
     <wire from="(240,280)" to="(400,280)"/>
+    <wire from="(240,40)" to="(240,70)"/>
+    <wire from="(240,70)" to="(250,70)"/>
+    <wire from="(240,80)" to="(240,280)"/>
     <wire from="(250,150)" to="(400,150)"/>
-    <wire from="(270,100)" to="(330,100)"/>
-    <wire from="(270,70)" to="(360,70)"/>
-    <wire from="(270,80)" to="(350,80)"/>
-    <wire from="(270,90)" to="(340,90)"/>
+    <wire from="(250,70)" to="(250,150)"/>
+    <wire from="(290,100)" to="(330,100)"/>
+    <wire from="(290,70)" to="(360,70)"/>
+    <wire from="(290,80)" to="(350,80)"/>
+    <wire from="(290,90)" to="(340,90)"/>
     <wire from="(330,100)" to="(330,500)"/>
     <wire from="(330,500)" to="(400,500)"/>
     <wire from="(340,380)" to="(400,380)"/>

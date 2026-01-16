@@ -138,11 +138,30 @@ def encode_line(parsed: List[str]) -> int:
         rd = check_unsigned_fit(parse_register(parsed[1]), 3)
 
         #Par défaut rm, sauf lorsqu'il y a 3 opérandes, cela veut dire que Rm = 0 (A revoir)
-        rm = check_unsigned_fit(parse_register(parsed[2]), 3) if length_parsed <= 3 else 0
+        rm = parse_register(parsed[2]) if length_parsed <= 3 else 0
 
         op = opc.ALU_OP[mnem]
         return (0b010000 << 10) | (op << 6) | (rm << 3) | rd
     
+
+    #-------------  Catégporie : Load/Store -------------
+    # Syntaxe Thumb: "inst rt, #offset/SP" (2 opérandes).
+    elif mnem in opc.LOAD_STORE_OP:
+    rt = check_unsigned_fit(parse_register(parsed[1]), 3)
+    offset = check_unsigned_fit(parse_immediate(parsed[2]), 8)
+    op = opc.LOAD_STORE_OP[mnem]
+
+    return (0b1001 << 12) | (op << 11) | (rt << 8) | offset
+    
+
+    #-------------  Catégporie : Miscellaneous 16-bit instructions -------------
+    # Syntaxe Thumb: "inst sp, #offset" (2 opérandes).
+    elif mnem in opc.MISC_OP:
+    offset = check_unsigned_fit(parse_immediate(parsed[2]), 7)
+    op = opc.MISC_OP[mnem]
+
+    return (0b1011 << 12) | (op << 7) | offset
+
     raise NotImplementedError(f"Instruction non supportée (pour l'instant): {parsed}")
 
 

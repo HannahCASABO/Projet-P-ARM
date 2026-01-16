@@ -32,3 +32,15 @@ SHIFT_OP = {
     "lsrs": 0b01,
     "asrs": 0b10,
 }
+
+#Opcodes Thumb ALU "Load/Store register" (1001 op Rt SP/offset)
+LOAD_STORE_OP = {
+    "str": 0b0,
+    "ldr": 0b1,
+}
+
+#Opcodes Thumb ALU "Miscellaneous 16-bit instructions" (1011 op SP offset)
+MISCELLANEOUS_OP = {
+    "add": 0b00000,
+    "sub": 0b00001,
+}

@@ -20,10 +20,10 @@ ALU_OP = {
 
 #Format Imm8 pour le ADD_SUB_MOV_OP:
 ADD_SUB_MOV_OP = {
-    "adds": 0b00,
-    "subs": 0b01,
-    "movs": 0b10,
-    "cmps": 0b11,
+    "movs": 0b00,
+    "cmps": 0b01,
+    "adds": 0b10,
+    "subs": 0b11,
 }
 
 #Format Imm5 pour les Shit:

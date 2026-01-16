@@ -11,7 +11,19 @@ def is_directive(line: str) -> bool:
     return s.startswith('.') and ':' not in s
 
 
+def extract_sp_immediate(op: str):
+    """
+    Extrait l'immédiat depuis [sp, #imm]
+    Retourne '#imm' ou None si non applicable
+    """
+    # Transforme #imm] -> #imm
+    if op.startswith("#") and op.endswith("]"):
+        return op[:-1]
+
+    return op
+
 def parse_line(line: str, lineno: int) -> dict:
+    
     original = line.rstrip("\n")
     line = remove_comment(line).strip()
     if not line or is_directive(line):
@@ -27,13 +39,25 @@ def parse_line(line: str, lineno: int) -> dict:
         }
 
     tokens = line.replace(',', ' ').split()
+
     if not tokens:
         return None
+    
+
+    mnemonic = tokens[0].lower()
+    raw_operands = tokens[1:]
+    operands = []
+
+    for op in raw_operands:
+        norm = extract_sp_immediate(op)
+        if norm is not None:
+            operands.append(norm)
+
 
     return {
         "type": "instruction",
-        "mnemonic": tokens[0].lower(),
-        "operands": [op.lower() for op in tokens[1:]],
+        "mnemonic": mnemonic,
+        "operands": operands,
         "lineno": lineno,
         "text": original,
     }

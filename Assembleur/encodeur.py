@@ -51,7 +51,7 @@ def parse_immediate(token: str) -> int:
     if not is_immediate(t):
         raise ValueError(f"Immédiat invalide: {token}")
 
-    return int(t[1:], 0)
+    return int(t[1:], 0) 
 
 
 #Pour insérer dans une liste lisible pour les tests
@@ -147,22 +147,26 @@ def encode_line(parsed: List[str]) -> int:
     #-------------  Catégporie : Load/Store -------------
     # Syntaxe Thumb: "inst rt, #offset/SP" (2 opérandes).
     elif mnem in opc.LOAD_STORE_OP:
-    rt = check_unsigned_fit(parse_register(parsed[1]), 3)
-    offset = check_unsigned_fit(parse_immediate(parsed[2]), 8)
-    op = opc.LOAD_STORE_OP[mnem]
+        rt = check_unsigned_fit(parse_register(parsed[1]), 3)
+        #On ignore la liste de [sp 
+        offset = int(check_unsigned_fit(parse_immediate(parsed[3]), 8)/4)
+        #On divise par 4 car l'offset fait appel à la RAM.
+        op = opc.LOAD_STORE_OP[mnem]
+        return (0b1001 << 12) | (op << 11) | (rt << 8) | offset
 
-    return (0b1001 << 12) | (op << 11) | (rt << 8) | offset
-    
 
     #-------------  Catégporie : Miscellaneous 16-bit instructions -------------
     # Syntaxe Thumb: "inst sp, #offset" (2 opérandes).
-    elif mnem in opc.MISC_OP:
-    offset = check_unsigned_fit(parse_immediate(parsed[2]), 7)
-    op = opc.MISC_OP[mnem]
+    elif mnem in opc.MISCELLANEOUS_OP:
+        #On ignore le premier argument qui est le SP
+        offset = int(check_unsigned_fit(parse_immediate(parsed[2]), 7)/4)
+        #On divise par 4 car l'offset fait appel à la RAM.
+        op = opc.MISCELLANEOUS_OP[mnem]
+        return (0b1011 << 12) | (op << 7) | offset 
+    
 
-    return (0b1011 << 12) | (op << 7) | offset
-
-    raise NotImplementedError(f"Instruction non supportée (pour l'instant): {parsed}")
+    #Si on ne connait pas on ne traite pas
+    #raise NotImplementedError(f"Instruction non supportée (pour l'instant): {parsed}")
 
 
 #Main test: pour exécuter sur l'ensemble de la liste attendu d'un parseurs 

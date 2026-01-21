@@ -29,30 +29,52 @@ def parse_line(line: str, lineno: int) -> dict:
     if not line or is_directive(line):
         return None
 
-    if ':' in line:
-        label = line.split(':', 1)[0].strip()
+    s = line.strip()
+    if s.endswith(':'):
+        label = s[:-1].strip()
+
+        # Ignorer les labels de debug clang (.LBB...)
+        if label.startswith(".LBB"):
+            return None
+
         return {
-            "type": "label", 
-            "name": label, 
-            "lineno": lineno, 
+            "type": "label",
+            "name": label,
+            "lineno": lineno,
             "text": original
         }
 
-    tokens = line.replace(',', ' ').split()
+    tokens = (line
+              .replace(',', ' ')
+              .replace('[', ' [')
+              .replace(']', ' ] ')
+              .split())
 
     if not tokens:
         return None
-    
 
     mnemonic = tokens[0].lower()
     raw_operands = tokens[1:]
     operands = []
 
     for op in raw_operands:
+        if op == ']':
+            continue
         norm = extract_sp_immediate(op)
         if norm is not None:
             operands.append(norm)
 
+    # Ignorer les branches de debug clang (b .LBB...)
+    if mnemonic == "b" and operands and operands[0].startswith(".LBB"):
+        return None
+
+    # Ignorer l'épilogue si ton CPU Logisim ne fait pas de retour
+    if mnemonic == "bx" and operands == ["lr"]:
+        return None
+
+    # (optionnel) ignorer aussi "add sp, #imm" d'épilogue si tu ne le supportes pas
+    # if mnemonic == "add" and operands[:2] == ["sp", "#40"]:
+    #     return None
 
     return {
         "type": "instruction",
@@ -61,6 +83,7 @@ def parse_line(line: str, lineno: int) -> dict:
         "lineno": lineno,
         "text": original,
     }
+
 
 
 def parse_file(filename: str) -> list[dict]:

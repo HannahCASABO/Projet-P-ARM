@@ -148,21 +148,42 @@ def encode_line(parsed: List[str]) -> int:
     # Syntaxe Thumb: "inst rt, #offset/SP" (2 opérandes).
     elif mnem in opc.LOAD_STORE_OP:
         rt = check_unsigned_fit(parse_register(parsed[1]), 3)
-        #On ignore la liste de [sp 
-        offset = int(check_unsigned_fit(parse_immediate(parsed[3]), 8)/4)
-        #On divise par 4 car l'offset fait appel à la RAM.
+
+        if len(parsed) == 4:
+            imm_tok = parsed[3].rstrip("]")
+            imm = parse_immediate(imm_tok)
+        elif len(parsed) == 3:
+            imm = 0
+        else:
+            raise ValueError(f"{mnem}: format invalide: {parsed}")
+
+        if imm % 4 != 0:
+            raise ValueError(f"{mnem}: offset doit être multiple de 4, reçu {imm}")
+
+        offset = check_unsigned_fit(imm // 4, 8)
         op = opc.LOAD_STORE_OP[mnem]
         return (0b1001 << 12) | (op << 11) | (rt << 8) | offset
+
+
+
 
 
     #-------------  Catégporie : Miscellaneous 16-bit instructions -------------
     # Syntaxe Thumb: "inst sp, #offset" (2 opérandes).
     elif mnem in opc.MISCELLANEOUS_OP:
-        #On ignore le premier argument qui est le SP
-        offset = int(check_unsigned_fit(parse_immediate(parsed[2]), 7)/4)
-        #On divise par 4 car l'offset fait appel à la RAM.
+    #On ignore le premier argument qui est le SP
+        imm = parse_immediate(parsed[2])
+
+        if imm % 4 != 0:
+            raise ValueError(f"{mnem} sp: l'immédiat doit être multiple de 4, reçu {imm}")
+
+    #On divise par 4 car l'offset fait appel à la RAM.
+        offset = imm // 4
+        offset = check_unsigned_fit(offset, 7)
         op = opc.MISCELLANEOUS_OP[mnem]
         return (0b1011 << 12) | (op << 7) | offset 
+    raise NotImplementedError(f"Instruction non supportée: {parsed}")
+
     
 
     #Si on ne connait pas on ne traite pas

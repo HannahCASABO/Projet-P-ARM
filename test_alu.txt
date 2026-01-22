@@ -2,7 +2,7 @@
 
 A[32] B[32] Shift[5] Codop[4] CarryIn[1] S[32] Flags[4]
 
-#List of outputs
+#List of inputs and outputs
 #A B Shift Codop CarryIn S Flags
 
 #Test "and"

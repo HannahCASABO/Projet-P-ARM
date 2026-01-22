@@ -235,7 +235,6 @@
       <a name="facing" val="east"/>
       <a name="label" val="r1"/>
     </comp>
-    <comp lib="0" loc="(150,530)" name="Constant"/>
     <comp lib="0" loc="(150,710)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="r0"/>
@@ -497,8 +496,6 @@
       <a name="label" val="AOUT"/>
       <a name="width" val="32"/>
     </comp>
-    <comp lib="0" loc="(900,670)" name="Constant"/>
-    <comp lib="0" loc="(910,430)" name="Constant"/>
     <comp lib="0" loc="(930,690)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="REGB"/>
@@ -564,16 +561,15 @@
       <a name="width" val="32"/>
     </comp>
     <comp lib="2" loc="(180,530)" name="Decoder">
+      <a name="enable" val="false"/>
       <a name="select" val="3"/>
     </comp>
     <comp lib="2" loc="(910,630)" name="Multiplexer">
-      <a name="enable" val="true"/>
       <a name="facing" val="west"/>
       <a name="select" val="3"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="2" loc="(920,390)" name="Multiplexer">
-      <a name="enable" val="true"/>
       <a name="facing" val="west"/>
       <a name="select" val="3"/>
       <a name="width" val="32"/>
@@ -637,7 +633,6 @@
     <wire from="(120,490)" to="(160,490)"/>
     <wire from="(120,690)" to="(150,690)"/>
     <wire from="(120,730)" to="(150,730)"/>
-    <wire from="(150,530)" to="(170,530)"/>
     <wire from="(170,1050)" to="(170,1070)"/>
     <wire from="(170,1220)" to="(170,1240)"/>
     <wire from="(170,1390)" to="(170,1410)"/>
@@ -687,8 +682,6 @@
     <wire from="(570,970)" to="(590,970)"/>
     <wire from="(880,630)" to="(910,630)"/>
     <wire from="(890,390)" to="(920,390)"/>
-    <wire from="(900,670)" to="(920,670)"/>
-    <wire from="(910,430)" to="(930,430)"/>
     <wire from="(930,670)" to="(930,690)"/>
     <wire from="(940,120)" to="(990,120)"/>
     <wire from="(940,220)" to="(990,220)"/>

@@ -13,6 +13,8 @@ def encode_program_bin(program: list[dict]) -> list[int]:
             tokens = [entry["mnemonic"]] + entry["operands"]
 
             sequence = encode_line(tokens)
+            if(sequence == -1):
+                continue
             out.append(sequence)
 
             # affichage binaire

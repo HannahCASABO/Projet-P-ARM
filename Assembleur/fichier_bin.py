@@ -33,7 +33,7 @@ if __name__ == "__main__":
     hex_words = assemble_file(str(asm_file))
 
     # Génération du fichier .bin
-    output_bin = asm_file.with_suffix(".bin")
+    output_bin = asm_file.with_name(asm_file.stem + "_out").with_suffix(".bin")
     write_bin_file(hex_words, output_bin)
 
     print(f"\nFichier généré : {output_bin}")

@@ -569,7 +569,7 @@ end TCL_Generic;
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(790,170)" name="Constant">
-      <a name="value" val="0x3"/>
+      <a name="value" val="0xc"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(790,190)" name="Constant">
@@ -641,7 +641,7 @@ end TCL_Generic;
     </comp>
     <comp lib="0" loc="(820,130)" name="Constant">
       <a name="facing" val="south"/>
-      <a name="value" val="0xb"/>
+      <a name="value" val="0xe"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(820,740)" name="Constant">
@@ -968,11 +968,13 @@ end TCL_Generic;
     <wire from="(780,610)" to="(850,610)"/>
     <wire from="(790,1220)" to="(790,1320)"/>
     <wire from="(790,1220)" to="(850,1220)"/>
-    <wire from="(790,170)" to="(820,170)"/>
+    <wire from="(790,170)" to="(850,170)"/>
     <wire from="(790,190)" to="(800,190)"/>
     <wire from="(80,640)" to="(90,640)"/>
     <wire from="(800,130)" to="(800,160)"/>
     <wire from="(800,160)" to="(850,160)"/>
+    <wire from="(800,180)" to="(800,190)"/>
+    <wire from="(800,180)" to="(850,180)"/>
     <wire from="(800,190)" to="(800,200)"/>
     <wire from="(800,190)" to="(850,190)"/>
     <wire from="(800,200)" to="(850,200)"/>
@@ -1014,9 +1016,6 @@ end TCL_Generic;
     <wire from="(820,1190)" to="(850,1190)"/>
     <wire from="(820,130)" to="(820,150)"/>
     <wire from="(820,150)" to="(850,150)"/>
-    <wire from="(820,170)" to="(820,180)"/>
-    <wire from="(820,170)" to="(850,170)"/>
-    <wire from="(820,180)" to="(850,180)"/>
     <wire from="(820,740)" to="(850,740)"/>
     <wire from="(820,780)" to="(830,780)"/>
     <wire from="(820,890)" to="(850,890)"/>

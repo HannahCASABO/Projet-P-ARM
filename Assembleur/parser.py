@@ -29,30 +29,41 @@ def parse_line(line: str, lineno: int) -> dict:
     if not line or is_directive(line):
         return None
 
-    s = line.strip()
-    if s.endswith(':'):
-        label = s[:-1].strip()
+    # Support des lignes du style: "L1: L2: L3: instruction ..."
+    if ':' in line:
+        parts = [p.strip() for p in line.split(':')]
+        rest = parts[-1].strip()
+        labels = [p for p in parts[:-1] if p.strip()]
 
-        # Ignorer les labels de debug clang (.LBB...)
-        if label.startswith(".LBB"):
-            return None
+        # Cas: plusieurs labels + instruction derrière
+        if labels and rest:
+            return {
+                "type": "labels_plus_instruction",
+                "labels": labels,
+                "rest": rest,
+                "lineno": lineno,
+                "text": original
+            }
 
-        return {
-            "type": "label",
-            "name": label,
-            "lineno": lineno,
-            "text": original
-        }
+        # Cas: label seul (ligne qui finit par ':')
+        if labels and not rest:
+            label = labels[0]
+            return {
+                "type": "label",
+                "name": label,
+                "lineno": lineno,
+                "text": original
+            }
 
     tokens = (line
-              .replace(',', ' ')
-              .replace('[', ' [')
-              .replace(']', ' ] ')
-              .split())
+          .replace(',', ' ')
+          .replace('[', ' [')
+          .replace(']', ' ] ')
+          .split())
 
     if not tokens:
         return None
-
+    
     mnemonic = tokens[0].lower()
     raw_operands = tokens[1:]
     operands = []
@@ -64,18 +75,6 @@ def parse_line(line: str, lineno: int) -> dict:
         if norm is not None:
             operands.append(norm)
 
-    # Ignorer les branches de debug clang (b .LBB...)
-    if mnemonic == "b" and operands and operands[0].startswith(".LBB"):
-        return None
-
-    # Ignorer l'épilogue si ton CPU Logisim ne fait pas de retour
-    if mnemonic == "bx" and operands == ["lr"]:
-        return None
-
-    # (optionnel) ignorer aussi "add sp, #imm" d'épilogue si tu ne le supportes pas
-    # if mnemonic == "add" and operands[:2] == ["sp", "#40"]:
-    #     return None
-
     return {
         "type": "instruction",
         "mnemonic": mnemonic,
@@ -83,6 +82,7 @@ def parse_line(line: str, lineno: int) -> dict:
         "lineno": lineno,
         "text": original,
     }
+
 
 
 
@@ -98,9 +98,27 @@ def parse_file(filename: str) -> list[dict]:
     with path.open("r", encoding="utf-8") as f:
         for lineno, line in enumerate(f, start=1):
             item = parse_line(line, lineno)
-            if item:
+            if not item:
+                continue
+
+            if item["type"] == "labels_plus_instruction":
+                # Ajouter tous les labels
+                for lab in item["labels"]:
+                    parsed.append({
+                        "type": "label",
+                        "name": lab,
+                        "lineno": item["lineno"],
+                        "text": item["text"]
+                    })
+                # Reparser l'instruction restante
+                inst = parse_line(item["rest"], lineno)
+                if inst:
+                    parsed.append(inst)
+            else:
                 parsed.append(item)
+
     return parsed
+
 
 def parse_file_list(filename: str) -> list[list[str]]:
     """

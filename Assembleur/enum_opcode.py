@@ -44,3 +44,22 @@ MISCELLANEOUS_OP = {
     "add": 0b00000,
     "sub": 0b00001,
 }
+
+# Branch conditionnel Thumb (1101 cond imm8)
+COND_BRANCH_OP = {
+    "beq": 0b0000,
+    "bne": 0b0001,
+    "bcs": 0b0010,
+    "bcc": 0b0011,
+    "bmi": 0b0100,
+    "bpl": 0b0101,
+    "bvs": 0b0110,
+    "bvc": 0b0111,
+    "bhi": 0b1000,
+    "bls": 0b1001,
+    "bge": 0b1010,
+    "blt": 0b1011,
+    "bgt": 0b1100,
+    "ble": 0b1101,
+    "bal": 0b1110,
+}

@@ -27,6 +27,19 @@ def is_immediate(tok: str) -> bool:
         return True
     except ValueError:
         return False
+    
+def check_signed_fit(value: int, bits: int) -> int:
+    """
+    Vérifie que value peut être codée sur 'bits' bits signés.
+    bits=8 => -128..127
+    Retourne la valeur en représentation unsigned si besoin.
+    """
+    min_v = -(1 << (bits - 1))
+    max_v = (1 << (bits - 1)) - 1
+    if value < min_v or value > max_v:
+        raise ValueError(f"Valeur {value} hors plage signée sur {bits} bits")
+    return value & ((1 << bits) - 1)
+
 
 
 def parse_register(token: str) -> int:
@@ -78,6 +91,35 @@ def encode_line(parsed: List[str]) -> int:
 
     mnem = parsed[0].lower()
     length_parsed = len(parsed)
+
+    #------------- Branch inconditionnel -------------
+    # b #off  => 11100 imm11
+    # off est un offset signé (en instructions 16-bit)
+    if mnem == "b" and length_parsed == 2 and is_immediate(parsed[1]):
+        off = int(parse_immediate(parsed[1]))  # signé autorisé
+        imm11 = check_signed_fit(off, 11)
+        return (0b11100 << 11) | imm11
+
+
+    #------------- Catégporie : CMP -------------
+    # cmp rn, #imm8  => 00101 Rn imm8
+    # IMPORTANT: doit être AVANT le bloc ALU_OP (sinon ALU_OP essaie de parser #imm comme registre)
+    if mnem == "cmp" and length_parsed == 3 and is_register(parsed[1]) and is_immediate(parsed[2]):
+        rn = check_unsigned_fit(parse_register(parsed[1]), 3)
+        imm8 = check_unsigned_fit(parse_immediate(parsed[2]), 8)
+        return (0b00101 << 11) | (rn << 8) | imm8
+
+    #------------- Branch conditionnel -------------
+    # beq/bne/... #off   => 1101 cond imm8
+    # off est un offset
+    if mnem in getattr(opc, "COND_BRANCH_OP", {}):
+        if length_parsed != 2 or not is_immediate(parsed[1]):
+            raise ValueError(f"{mnem}: format attendu: {mnem} #off. Reçu: {parsed}")
+
+        off = int(parse_immediate(parsed[1]))  # signé autorisé (#-3)
+        imm8 = check_signed_fit(off, 8)
+        cond = opc.COND_BRANCH_OP[mnem]
+        return (0b1101 << 12) | (cond << 8) | imm8
 
     #------------- Catégorie : Shift, add, sub, mov -------------
     # --- Shift format: shift rd, rn, imm5 ---
@@ -138,7 +180,14 @@ def encode_line(parsed: List[str]) -> int:
         rd = check_unsigned_fit(parse_register(parsed[1]), 3)
 
         #Par défaut toujours rm, même lorsqu'il y a un immédiat comme 3ème opérandes.
-        rm = parse_register(parsed[2])
+        # CORRECTION : ALU_OP ne supporte pas les immédiats en Thumb-16.
+        if length_parsed != 3:
+            raise ValueError(f"{mnem}: format invalide: {parsed}")
+
+        if not is_register(parsed[2]):
+            raise ValueError(f"{mnem}: opérande 2 doit être un registre (pas un immédiat). Reçu: {parsed[2]}")
+
+        rm = check_unsigned_fit(parse_register(parsed[2]), 3)
 
         op = opc.ALU_OP[mnem]
         return (0b010000 << 10) | (op << 6) | (rm << 3) | rd

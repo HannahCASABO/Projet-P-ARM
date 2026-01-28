@@ -52,6 +52,10 @@
     <tool name="OR Gate">
       <a name="size" val="30"/>
     </tool>
+    <tool name="XOR Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="30"/>
+    </tool>
   </lib>
   <lib desc="#Plexers" name="2"/>
   <lib desc="#Arithmetic" name="3"/>
@@ -149,7 +153,10 @@ end TCL_Generic;
       <a name="type" val="output"/>
     </tool>
     <tool lib="1" name="NOT Gate"/>
-    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="AND Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="30"/>
+    </tool>
     <tool lib="1" name="OR Gate"/>
   </toolbar>
   <circuit name="Load_Store">
@@ -282,7 +289,7 @@ end TCL_Generic;
       <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(470,380)" name="Tunnel">
+    <comp lib="0" loc="(470,370)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="Code"/>
     </comp>
@@ -374,7 +381,7 @@ end TCL_Generic;
     <comp lib="1" loc="(200,330)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(480,430)" name="AND Gate">
+    <comp lib="1" loc="(480,420)" name="AND Gate">
       <a name="facing" val="south"/>
       <a name="size" val="30"/>
     </comp>
@@ -395,8 +402,9 @@ end TCL_Generic;
     </comp>
     <comp lib="4" loc="(490,430)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
+      <a name="trigger" val="falling"/>
     </comp>
-    <comp lib="8" loc="(943,520)" name="Text">
+    <comp lib="8" loc="(940,520)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="Delay load and hold PC for 1 cycle for the RAM to send out requested data "/>
     </comp>
@@ -421,14 +429,14 @@ end TCL_Generic;
     <wire from="(310,60)" to="(330,60)"/>
     <wire from="(310,80)" to="(330,80)"/>
     <wire from="(360,70)" to="(370,70)"/>
-    <wire from="(470,380)" to="(470,400)"/>
+    <wire from="(470,370)" to="(470,390)"/>
     <wire from="(470,480)" to="(480,480)"/>
-    <wire from="(480,430)" to="(480,440)"/>
-    <wire from="(490,390)" to="(490,400)"/>
-    <wire from="(490,390)" to="(550,390)"/>
+    <wire from="(480,420)" to="(480,440)"/>
+    <wire from="(490,380)" to="(490,390)"/>
+    <wire from="(490,380)" to="(550,380)"/>
     <wire from="(510,490)" to="(510,500)"/>
     <wire from="(540,480)" to="(550,480)"/>
-    <wire from="(550,390)" to="(550,480)"/>
+    <wire from="(550,380)" to="(550,480)"/>
     <wire from="(550,480)" to="(640,480)"/>
     <wire from="(590,220)" to="(600,220)"/>
     <wire from="(60,380)" to="(90,380)"/>

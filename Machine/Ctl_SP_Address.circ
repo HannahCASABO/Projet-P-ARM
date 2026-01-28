@@ -127,10 +127,6 @@
       <a name="out_width" val="32"/>
       <a name="type" val="zero"/>
     </comp>
-    <comp lib="0" loc="(430,210)" name="Constant">
-      <a name="value" val="0x2"/>
-      <a name="width" val="5"/>
-    </comp>
     <comp lib="0" loc="(450,370)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="S"/>
@@ -191,9 +187,6 @@
     <comp lib="2" loc="(710,320)" name="Multiplexer">
       <a name="width" val="32"/>
     </comp>
-    <comp lib="3" loc="(500,180)" name="Shifter">
-      <a name="width" val="32"/>
-    </comp>
     <comp lib="3" loc="(540,310)" name="Adder">
       <a name="width" val="32"/>
     </comp>
@@ -213,10 +206,7 @@
     <wire from="(280,250)" to="(280,260)"/>
     <wire from="(280,260)" to="(330,260)"/>
     <wire from="(340,170)" to="(390,170)"/>
-    <wire from="(430,170)" to="(460,170)"/>
-    <wire from="(430,210)" to="(440,210)"/>
-    <wire from="(440,190)" to="(440,210)"/>
-    <wire from="(440,190)" to="(460,190)"/>
+    <wire from="(430,170)" to="(570,170)"/>
     <wire from="(450,370)" to="(480,370)"/>
     <wire from="(460,280)" to="(480,280)"/>
     <wire from="(470,320)" to="(500,320)"/>
@@ -225,9 +215,6 @@
     <wire from="(480,300)" to="(500,300)"/>
     <wire from="(480,370)" to="(480,380)"/>
     <wire from="(480,380)" to="(500,380)"/>
-    <wire from="(500,180)" to="(530,180)"/>
-    <wire from="(530,170)" to="(530,180)"/>
-    <wire from="(530,170)" to="(570,170)"/>
     <wire from="(540,310)" to="(570,310)"/>
     <wire from="(540,390)" to="(560,390)"/>
     <wire from="(560,340)" to="(560,390)"/>
